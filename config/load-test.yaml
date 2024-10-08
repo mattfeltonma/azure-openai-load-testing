@@ -1,0 +1,44 @@
+version: v0.1
+test_id: genai_gateway_test
+displayName: "GenAI Gateway Load Test"
+description: "This will load test a Generative AI Gateway by sending ChatCompletions"
+testType: JMX
+testPlan: ./genai_gateway_test.jmx
+engineInstances: 1
+configurationFiles:
+  - './config/chat_completions.csv'
+# This property does not seem to work as of 10/2024
+splitAllCSVs: True
+failureCriteria:
+  - percentage(error) > 80
+autoStop:
+  errorPercentage: 80
+  timeWindow: 60
+env:
+  - name: VIRTUAL_USERS
+    value: 10
+  - name: RAMP_UP
+    value: 1
+  - name: LOOP_COUNT
+    value: 1
+  - name: RESOURCE
+    value: 'https://cognitiveservices.azure.com'
+    # This is the fully-qualified domain name of your Generative AI Gateway
+  - name: OPENAI_ENDPOINT
+    value: mygenaigateway.company.com
+  - name: OPENAI_DEPLOYMENT_NAME
+    value: gpt-4o
+  - name: OPENAI_API_VERSION
+    value: 2024-04-01-preview
+secrets:
+    # These are the credentials of the service principal that will be used to make the calls to the Generative AI Gateway
+  - name: TENANT_ID
+    value: https://mykeyvault.vault.azure.net/secrets/tenantid/38a3b814339944348710b216014f5acd
+  - name: CLIENT_ID
+    value: https://mykeyvault.vault.azure.net/secrets/clientid/94df372a3530469ea6e4b30064d9dbdc
+  - name: CLIENT_SECRET
+    value: https://mykeyvault.vault.azure.net/secrets/clientsecret/f8612911116f42fe8c1b77c53ca1b8de
+# This property does not seem to work as of 10/2024
+keyVaultReferenceIdentity: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myumi
+subnetId: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet
+publicIPDisabled: true
