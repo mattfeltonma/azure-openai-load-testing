@@ -88,11 +88,11 @@ The CLI for Azure Load Testing is still in preview and some properties in the YA
 
 2. If you want to split the ChatCompletions in the CSV across multiple engines (if you are testing with more than 250 virtual users) you will need to set that option as pictured below.
 
-![Set split CSV](image5.png)
+![Set split CSV](images/image5.png)
 
 3. You can optionally add server-side metrics from the Azure OpenAI instances behind the Generative AI Gateway to track how requests are distributed. These can be added by modifying the section in the screenshot below.
 
-![Add server-side metrics](image6.png)
+![Add server-side metrics](images/image6.png)
 
 ### Running the Test
 At this point you should be ready to [run your test](https://learn.microsoft.com/en-us/azure/load-testing/quickstart-create-and-run-load-test?tabs=portal) and test how well your Generative AI Gateway is performing!
