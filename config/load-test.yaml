@@ -7,8 +7,6 @@ testPlan: ./genai_gateway_test.jmx
 engineInstances: 1
 configurationFiles:
   - './config/chat_completions.csv'
-# This property does not seem to work as of 10/2024
-splitAllCSVs: True
 failureCriteria:
   - percentage(error) > 80
 autoStop:
