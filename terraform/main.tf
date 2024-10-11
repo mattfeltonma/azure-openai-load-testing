@@ -122,7 +122,7 @@ resource "azurerm_monitor_diagnostic_setting" "kv-diag-base" {
 # Create Azure RBAC assignment for user that will be Key Vault Administrator
 resource "azurerm_role_assignment" "assign-admin" {
   depends_on = [
-    azurerm_monitor_diagnostic_setting.diag-base
+    azurerm_monitor_diagnostic_setting.kv-diag-base
   ]
   name                 = uuidv5("dns", "${azurerm_key_vault.kv.name}${var.key_vault_administrator}")
   scope                = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/${azurerm_resource_group.rg.name}/providers/Microsoft.KeyVault/vaults/${azurerm_key_vault.kv.name}"
@@ -241,10 +241,6 @@ resource "azurerm_monitor_diagnostic_setting" "load-testing-diag-base" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 
   enabled_log {
-    category = "AzureLoadTestingOperations"
-  }
-
-  metric {
-    category = "AllMetrics"
+    category = "OperationLogs"
   }
 }
