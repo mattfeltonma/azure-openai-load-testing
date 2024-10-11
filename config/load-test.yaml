@@ -17,8 +17,6 @@ env:
     value: 10
   - name: RAMP_UP
     value: 1
-  - name: LOOP_COUNT
-    value: 1
   - name: RESOURCE
     value: 'https://cognitiveservices.azure.com'
     # This is the fully-qualified domain name of your Generative AI Gateway
@@ -31,11 +29,11 @@ env:
 secrets:
     # These are the credentials of the service principal that will be used to make the calls to the Generative AI Gateway
   - name: TENANT_ID
-    value: https://mykeyvault.vault.azure.net/secrets/tenantid/38a3b814339944348710b216014f5acd
+    value: https://mykeyvault.vault.azure.net/secrets/tenantid/c2a80c47dfec487189b8b2b2c7409e62
   - name: CLIENT_ID
-    value: https://mykeyvault.vault.azure.net/secrets/clientid/94df372a3530469ea6e4b30064d9dbdc
+    value: https://mykeyvault.vault.azure.net/secrets/clientid/af16594866184234b36228d89725c718
   - name: CLIENT_SECRET
-    value: https://mykeyvault.vault.azure.net/secrets/clientsecret/f8612911116f42fe8c1b77c53ca1b8de
+    value: https://mykeyvault.vault.azure.net/secrets/clientsecret/e373cf90b0ad48fe8b4918472ca2e042
 # This property does not seem to work as of 10/2024
 keyVaultReferenceIdentity: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myumi
 subnetId: /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet

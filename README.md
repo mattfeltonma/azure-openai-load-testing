@@ -71,7 +71,9 @@ The image below illustrates a typical architecture this solution could be deploy
   * Lines 35-40 TENANT_ID, CLIENT_ID, CLIENT_SECRET: Input the secret references returned from the Terraform output.
   * Line 42 keyVaultReferenceIdentity: Input the value of the load_testing_managed_identity_id output from the Terraform output.
 
-  You can modify additional settings such as the number of engines, virtual users, ramp up time in seconds, and the loop count (number of time each virtual user will perform the ChatCompletions). For every 250 users you should have one engine.
+  You can modify additional settings such as the number of engines, virtual users and ramp up time in seconds, For every 250 users you should have one engine. 
+  
+  The JMeter test is configured to run indefinitely. The load test is configured to automatically stop the test after errors make up 90% of the responses over a period of 60 seconds. You can adjust these settings as needed, but ensure you configure metrics around stopping the test if you don't plan on manually terminating it.
 
 ### ChatCompletions
 1. Modify the ChatCompletions in config/chat_completions.csv file to include sample system prompts and user prompts specific for your workload. Adjust the max tokens as needed.

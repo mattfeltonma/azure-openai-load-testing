@@ -59,15 +59,9 @@
             <stringProp name="Argument.desc">Number of virtual users to use with the test</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="loop_count" elementType="Argument">
-            <stringProp name="Argument.name">loop_count</stringProp>
-            <stringProp name="Argument.value">${__BeanShell(System.getenv(&quot;LOOP_COUNT&quot;) )}</stringProp>
-            <stringProp name="Argument.desc">Number of loops each user should perform</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="ramp_up_seconds" elementType="Argument">
             <stringProp name="Argument.name">ramp_up_seconds</stringProp>
-            <stringProp name="Argument.value">${__BeanShell(System.getenv(&quot;RAMP_UP) )}</stringProp>
+            <stringProp name="Argument.value">${__BeanShell(System.getenv(&quot;RAMP_UP&quot;) )}</stringProp>
             <stringProp name="Argument.desc">Ramp up time for each additional user to make the request</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
@@ -80,14 +74,14 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">${loop_count}</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
         <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Once Only Controller"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Token Request">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Token Request" enabled="true">
             <stringProp name="HTTPSampler.domain">login.microsoftonline.com</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/${tenant_id}/oauth2/token</stringProp>
@@ -181,7 +175,7 @@
             <stringProp name="shareMode">shareMode.all</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Content-Type</stringProp>
